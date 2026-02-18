@@ -103,16 +103,19 @@ def main_test(race="Abu Dhabi Grand Prix", downgrader=20, tail=2):
     box = ax.get_position()
     ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
     ax.set_axis_off()
-    ax.legend(loc='upper right', bbox_to_anchor=(1.1, 1)) # Comment this when we get to our leaderboard thing
-    ############################## Consider doing this to put all the stuff in a folder instead of just in the main directory
-    # output_dir = Path("race_playbacks")
-    # output_dir.mkdir(parents=True, exist_ok=True)
-    # file_path = output_dir / f"{race}_replay.mp4"
-    # ani.save(str(file_path), writer=writer)
-    ##############################
-    ani.save(f"{race}_replay.mp4", writer=writer)
-    plt.show()
+    ax.legend(loc='upper right', bbox_to_anchor=(1.1, 1)) # Comment this out when we get to our leaderboard thing running
+    os.makedirs("race_replays", exist_ok=True)
+    ani.save(f"race_replays/{race}_replay.mp4", writer=writer)
+    # plt.show()
+
+def make_all_animations():
+    script_dir = Path(__file__).resolve().parent
+    idk = script_dir / "db"
+    for file in idk.glob("*Grand Prix*"):
+        main_test(race=file.name, downgrader=200)
+
 
 
 if __name__ == "__main__":
-    main_test(race="Qatar Grand Prix", downgrader=20, tail=0)
+    # main_test(race="Qatar Grand Prix", downgrader=20, tail=0)
+    make_all_animations()
