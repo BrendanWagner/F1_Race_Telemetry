@@ -97,16 +97,22 @@ def main_test(race="Abu Dhabi Grand Prix", downgrader=20, tail=2):
                 
         return updated_artists
 
-    ani = FuncAnimation(fig, update, frames=longest_race, interval=1000, blit=True)
+    ani = FuncAnimation(fig, update, frames=longest_race, interval=1000, blit=True) # Need to fix the interval here
     print("Encoding video... this might take a minute.")
-    writer = FFMpegWriter(fps=8)
+    writer = FFMpegWriter(fps=8) # Need to change the fps here
     box = ax.get_position()
     ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
     ax.set_axis_off()
-    ax.legend(loc='upper right', bbox_to_anchor=(1.1, 1)) # Uncomment this maybe consider adding ncol=2
+    ax.legend(loc='upper right', bbox_to_anchor=(1.1, 1)) # Comment this when we get to our leaderboard thing
+    ############################## Consider doing this to put all the stuff in a folder instead of just in the main directory
+    # output_dir = Path("race_playbacks")
+    # output_dir.mkdir(parents=True, exist_ok=True)
+    # file_path = output_dir / f"{race}_replay.mp4"
+    # ani.save(str(file_path), writer=writer)
+    ##############################
     ani.save(f"{race}_replay.mp4", writer=writer)
     plt.show()
 
 
 if __name__ == "__main__":
-    main_test(downgrader=5, tail=0)
+    main_test(race="Qatar Grand Prix", downgrader=20, tail=0)

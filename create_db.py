@@ -55,7 +55,7 @@ def main():
         
         # Find all driver code subdirectories in the Race folder
         driver_dirs = [d for d in race_dir.iterdir() 
-                      if d.is_dir() and driver_pattern.match(d.name)]
+                    if d.is_dir() and driver_pattern.match(d.name)]
         
         print(f"Found {len(driver_dirs)} drivers in {race_name}/Race")
         
@@ -80,18 +80,18 @@ def main():
                 
             except Exception as e:
                 # 5. Handle errors gracefully
-                print(f"✗ Failed: {str(e)}")
+                print(f"Failed: {str(e)}")
                 total_failed += 1
                 continue
-    
-    # Print summary
-    print(f"\n{'='*60}")
-    print(f"SUMMARY")
-    print(f"{'='*60}")
-    print(f"Total successfully processed: {total_processed}")
-    print(f"Total failed: {total_failed}")
-    print(f"Database location: {db_dir}")
-    print(f"{'='*60}")
+        
+        # Print summary
+        print(f"\n{'='*60}")
+        print(f"SUMMARY")
+        print(f"{'='*60}")
+        print(f"Total successfully processed: {total_processed}")
+        print(f"Total failed: {total_failed}")
+        print(f"Database location: {db_dir}")
+        print(f"{'='*60}")
 
 
 if __name__ == "__main__":
